@@ -391,7 +391,7 @@ func (wac *Conn) Restore() error {
 	case r := <-initChan:
 		var resp map[string]interface{}
 		if err = json.Unmarshal([]byte(r), &resp); err != nil {
-			return fmt.Errorf("error decoding login connResp: %v\n", err)
+			return fmt.Errorf("error decoding login connResp: %v; %v\n", err, r)
 		}
 
 		if int(resp["status"].(float64)) != 200 {
@@ -418,7 +418,7 @@ func (wac *Conn) Restore() error {
 		case r := <-loginChan:
 			var resp map[string]interface{}
 			if err = json.Unmarshal([]byte(r), &resp); err != nil {
-				return fmt.Errorf("error decoding login connResp: %v\n", err)
+				return fmt.Errorf("error decoding login connResp: %v\n%v\n", err, r)
 			}
 			if int(resp["status"].(float64)) != 200 {
 				return fmt.Errorf("admin login responded with %d", int(resp["status"].(float64)))
@@ -445,7 +445,7 @@ func (wac *Conn) Restore() error {
 		case r := <-s2:
 			if err := json.Unmarshal([]byte(r), &connResp); err != nil {
 				wac.timeTag = ""
-				return fmt.Errorf("error decoding s2 message: %v\n", err)
+				return fmt.Errorf("error decoding s2 message: %v\n%v\n", err, r)
 			}
 		case <-time.After(wac.msgTimeout):
 			wac.timeTag = ""
@@ -459,7 +459,7 @@ func (wac *Conn) Restore() error {
 		var resp map[string]interface{}
 		if err = json.Unmarshal([]byte(r), &resp); err != nil {
 			wac.timeTag = ""
-			return fmt.Errorf("error decoding login connResp: %v\n", err)
+			return fmt.Errorf("error decoding login connResp: %v\n%v\n", err, r)
 		}
 
 		if int(resp["status"].(float64)) != 200 {
