@@ -148,7 +148,7 @@ func NewConnWithOptions(opt *Options) (*Conn, error) {
 		msgCount:   0,
 		msgTimeout: opt.Timeout,
 		Store:      newStore(),
-		longClientName:  "github.com/Rhymen/go-whatsapp",
+		longClientName:  "github.com/reznikartem/go-whatsapp",
 		shortClientName: "go-whatsapp",
 		clientVersion:   "0.1.0",
 	}
@@ -186,8 +186,8 @@ func (wac *Conn) connect() (err error) {
 	}()
 
 	dialer := &websocket.Dialer{
-		ReadBufferSize:   0,
-		WriteBufferSize:  0,
+		ReadBufferSize:   4 * 1024,
+		WriteBufferSize:  1024,
 		HandshakeTimeout: wac.msgTimeout,
 		Proxy:            wac.Proxy,
 	}
