@@ -3,11 +3,10 @@ package main
 import (
 	"encoding/gob"
 	"fmt"
+	"github.com/Baozisoftware/qrcode-terminal-go"
+	"github.com/reznikartem/go-whatsapp"
 	"os"
 	"time"
-
-	qrcodeTerminal "github.com/Baozisoftware/qrcode-terminal-go"
-	"github.com/reznikartem/go-whatsapp"
 )
 
 func main() {

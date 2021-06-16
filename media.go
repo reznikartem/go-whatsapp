@@ -119,6 +119,22 @@ type MediaConn struct {
 		} `json:"hosts"`
 	} `json:"media_conn"`
 }
+ */
+
+type MediaConn struct {
+	Status    int `json:"status"`
+	MediaConn struct {
+		Auth  string `json:"auth"`
+		TTL   int    `json:"ttl"`
+		Hosts []struct {
+			Hostname string `json:"hostname"`
+			IPs []struct {
+				IP4 string `json:"ip4"`
+				IP6 string `json:"ip6"`
+			} `json:"ips"`
+		} `json:"hosts"`
+	} `json:"media_conn"`
+}
 
 func (wac *Conn) queryMediaConn() (hostname, auth string, ttl int, err error) {
 	queryReq := []interface{}{"query", "mediaConn"}
