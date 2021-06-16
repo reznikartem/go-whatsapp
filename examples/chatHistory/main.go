@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/gob"
 	"fmt"
-	"github.com/reznikartem/go-whatsapp/binary/proto"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
-	"github.com/Baozisoftware/qrcode-terminal-go"
+	"github.com/reznikartem/go-whatsapp/binary/proto"
+
+	qrcodeTerminal "github.com/Baozisoftware/qrcode-terminal-go"
 	"github.com/reznikartem/go-whatsapp"
 )
 
